@@ -1,25 +1,36 @@
-spring:
-  application:
-    name: order-management-service
 server:
   port: 8082
 
+spring:
+  application:
+    name: order-management-service
+
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:orderdb}
-    username: ${DB_USER:order_user}
-    password: ${DB_PASS:order_pass}
+    url: jdbc:postgresql://localhost:5432/capstone
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
 resilience4j:
   circuitbreaker:
     instances:
       catalogService:
-        registerHealthIndicator: true
-        slidingWindowSize: 10
+        slidingWindowSize: 5
         failureRateThreshold: 50
-        waitDurationInOpenState: 30s
+        waitDurationInOpenState: 10s
+
 management:
   endpoints:
     web:
