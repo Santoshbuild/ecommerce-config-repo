@@ -1,23 +1,39 @@
-spring:
-  application:
-    name: product-catalog-service
 server:
   port: 8081
 
+spring:
+  application:
+    name: product-catalog-service
+
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:productdb}
-    username: ${DB_USER:product_user}
-    password: ${DB_PASS:product_pass}
+    url: jdbc:postgresql://localhost:5432/capstone
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
 management:
   endpoints:
     web:
       exposure:
         include: health,info,metrics
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
