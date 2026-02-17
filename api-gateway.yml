@@ -14,7 +14,7 @@ spring:
 
       routes:
         - id: product-service
-          uri: lb://PRODUCT-CATALOG-SERVICE
+          uri: lb://PRODUCT-SERVICE
           predicates:
             - Path=/api/products/**
 
