@@ -3,12 +3,12 @@ server:
 
 spring:
   application:
-    name: order-management-service
+    name: order-service
 
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/capstone}
-    username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD:password}
+    url: jdbc:postgresql://localhost:5432/order_db
+    username: postgres
+    password: Santosh@123
     driver-class-name: org.postgresql.Driverr
 
   jpa:
@@ -19,7 +19,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://discovery-server:8761/eureka
+      defaultZone: http://localhost:8761/eureka
     register-with-eureka: true
     fetch-registry: true
 
